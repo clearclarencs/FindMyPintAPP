@@ -37,26 +37,26 @@
         <!--Map-->
         <scene sceneID="E1B-yy-9mu">
             <objects>
-                <viewController id="dWn-dA-5z9" sceneMemberID="viewController">
+                <viewController id="dWn-dA-5z9" customClass="MapViewController" customModule="FindMyPint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76K-w6-8Ii">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97G-2p-jY9">
-                                <rect key="frame" x="16" y="103" width="361" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97G-2p-jY9">
+                                <rect key="frame" x="16" y="96" width="361" height="673"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dWn-dA-5z9" id="Vql-gz-VDu"/>
+                                </connections>
                             </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FindMyPint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAa-cs-kCC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMyPint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAa-cs-kCC">
                                 <rect key="frame" x="16" y="59" width="151" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYZ-yi-GGL">
-                                <rect key="frame" x="41" y="113" width="310" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="JYZ-yi-GGL">
+                                <rect key="frame" x="41" y="96" width="310" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="dWn-dA-5z9" id="UnK-hI-wNb"/>
@@ -65,8 +65,22 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EzE-8C-XBM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="97G-2p-jY9" firstAttribute="top" secondItem="tAa-cs-kCC" secondAttribute="bottom" id="AAQ-Bt-kzw"/>
+                            <constraint firstItem="tAa-cs-kCC" firstAttribute="leading" secondItem="EzE-8C-XBM" secondAttribute="leading" constant="16" id="Egx-qk-pt1"/>
+                            <constraint firstItem="97G-2p-jY9" firstAttribute="bottom" secondItem="EzE-8C-XBM" secondAttribute="bottom" id="HPf-mp-Bjn"/>
+                            <constraint firstItem="JYZ-yi-GGL" firstAttribute="top" secondItem="tAa-cs-kCC" secondAttribute="bottom" id="I5U-fQ-0jV"/>
+                            <constraint firstItem="tAa-cs-kCC" firstAttribute="top" secondItem="EzE-8C-XBM" secondAttribute="top" id="TCk-hd-hBs"/>
+                            <constraint firstItem="EzE-8C-XBM" firstAttribute="trailing" secondItem="97G-2p-jY9" secondAttribute="trailing" constant="16" id="TaO-u2-eOM"/>
+                            <constraint firstItem="97G-2p-jY9" firstAttribute="leading" secondItem="EzE-8C-XBM" secondAttribute="leading" constant="16" id="VXs-Vm-bA2"/>
+                            <constraint firstItem="EzE-8C-XBM" firstAttribute="trailing" secondItem="JYZ-yi-GGL" secondAttribute="trailing" constant="42" id="Wpq-G1-d4I"/>
+                            <constraint firstItem="JYZ-yi-GGL" firstAttribute="leading" secondItem="EzE-8C-XBM" secondAttribute="leading" constant="41" id="hN8-pP-Sfg"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" selectedImage="map.fill" id="MDr-d7-kT3"/>
+                    <connections>
+                        <outlet property="mapView" destination="97G-2p-jY9" id="U27-Jb-C9Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYq-he-MxF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,7 +89,7 @@
         <!--Home-->
         <scene sceneID="JZ2-PJ-XaZ">
             <objects>
-                <viewController id="uWd-ZG-ofn" sceneMemberID="viewController">
+                <viewController id="uWd-ZG-ofn" customClass="FeedViewController" customModule="FindMyPint" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g5Z-vY-pQ0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +99,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KCT-2e-zQl">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="aPost" id="KCT-2e-zQl">
                                         <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KCT-2e-zQl" id="X69-W7-oKA">
@@ -94,6 +108,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="uWd-ZG-ofn" id="17i-gz-dWE"/>
+                                    <outlet property="delegate" destination="uWd-ZG-ofn" id="JzH-gT-7zr"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FindMyPint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCM-jM-zD0">
                                 <rect key="frame" x="16" y="59" width="151" height="37"/>
@@ -120,6 +138,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.23529411764705882" green="0.52156862745098043" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="uWd-ZG-ofn" kind="relationship" relationship="viewControllers" id="Sxo-fw-IHT"/>
