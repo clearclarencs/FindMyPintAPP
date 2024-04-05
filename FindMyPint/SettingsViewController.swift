@@ -15,6 +15,13 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func logOut(_ sender: Any) {
+        UserDefaults.standard.removeObject(forKey: "username") // Remove use defaults
+        // UserDefaults.standard.removeObject(forKey: "authToken")
+        self.tabBarController?.selectedIndex = 0 // Go back to feed screen to trigger login
+        
+    }
+    
 
     /*
     // MARK: - Navigation

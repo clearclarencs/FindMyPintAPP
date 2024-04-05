@@ -12,32 +12,24 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         ("Hopey344", "The cocktail selection was fantastic @Sphinx #Bargain"),
         ("GuinessLover82", "At the @brookhouse watching the Derby game, great game."),
         ("DawnB1945", "£7 rosé at @Flute #WineDrunk #Tipsy #Lads"),
-        ("TheSphinx 🍺", "£2.20 Carling all week long, who could say no 🥵"),
         ("MrLeahy", "Rated @Hope&Anchor ★★★★✩"),
         ("EWilton69", "@Popworld WKD is lethal, had 2 last night blacked out and woke up in a police cell this morning. #FridayNights #WildOne #LGBT"),
-        ("Hatch 🍺", "Free entry all night, blasting y2k club anthems. Roll on the weekend."),
-        ("TheBlackCat 🍺", "Quiz night Wednesday‼️ £20 up for grabs but doors close 6pm."),
         ("Hopey344", "The cocktail selection was fantastic @Sphinx #Bargain"),
         ("GuinessLover82", "At the @brookhouse watching the Derby game, great game."),
         ("DawnB1945", "£7 rosé at @Flute #WineDrunk #Tipsy #Lads"),
-        ("TheSphinx 🍺", "£2.20 Carling all week long, who could say no 🥵"),
         ("MrLeahy", "Rated @Hope&Anchor ★★★★✩"),
         ("EWilton69", "@Popworld WKD is lethal, had 2 last night blacked out and woke up in a police cell this morning. #FridayNights #WildOne #LGBT"),
-        ("Hatch 🍺", "Free entry all night, blasting y2k club anthems. Roll on the weekend."),
-        ("TheBlackCat 🍺", "Quiz night Wednesday‼️ £20 up for grabs but doors close 6pm."),
         ("Hopey344", "The cocktail selection was fantastic @Sphinx #Bargain"),
         ("GuinessLover82", "At the @brookhouse watching the Derby game, great game."),
         ("DawnB1945", "£7 rosé at @Flute #WineDrunk #Tipsy #Lads"),
-        ("TheSphinx 🍺", "£2.20 Carling all week long, who could say no 🥵"),
         ("MrLeahy", "Rated @Hope&Anchor ★★★★✩"),
         ("EWilton69", "@Popworld WKD is lethal, had 2 last night blacked out and woke up in a police cell this morning. #FridayNights #WildOne #LGBT"),
-        ("Hatch 🍺", "Free entry all night, blasting y2k club anthems. Roll on the weekend."),
-        ("TheBlackCat 🍺", "Quiz night Wednesday‼️ £20 up for grabs but doors close 6pm."),
-
-            
     ]
     let blueTheme = UIColor(red: 60.0/255.0, green: 133.0/255.0, blue: 168.0/255.0, alpha: 1.0)
     let yellowTheme = UIColor(red: 252.0/255.0, green: 165.0/255.0, blue: 3.0/255.0, alpha: 1.0)
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     
     func formatPost(_ author: String, _ comment: String) -> NSAttributedString {
         let text = author+"\n"+comment
@@ -80,10 +72,27 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return aCell
     }
     
+    @IBAction func unwindFromPostSegue(segue: UIStoryboardSegue) {
+        if let sourceViewController = segue.source as? PostViewController {
+            if sourceViewController.createPost{
+                posts.insert((UserDefaults.standard.string(forKey: "username")!, sourceViewController.postTextView.text), at: 0)
+                tableView.reloadData()
+            }
+        }
+    }
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDefaults.standard.string(forKey: "username") == nil{
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+        tableView.reloadData()
     }
 
 }

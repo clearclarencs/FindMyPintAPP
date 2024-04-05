@@ -22,8 +22,8 @@
 		</dict>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>For map feature to find local pubs and plan navigation.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>For map feature to find local pubs and plan navigation.</string>
 </dict>
 </plist>

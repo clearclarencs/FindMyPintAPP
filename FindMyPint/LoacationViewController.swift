@@ -9,6 +9,8 @@ import UIKit
 
 class LoacationViewController: UIViewController {
 
+    @IBAction func goRoute(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

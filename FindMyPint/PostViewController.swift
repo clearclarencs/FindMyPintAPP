@@ -7,8 +7,22 @@
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UITextViewDelegate {
+    var createPost = false
+    @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var postTextView: UITextView!
+    
+    @IBAction func createPost(_ sender: Any) {
+        createPost = true
+        performSegue(withIdentifier: "unwindFromPostSegue", sender: self)
+        
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+    }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
