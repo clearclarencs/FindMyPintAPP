@@ -29,6 +29,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func planRoute(_ sender: Any) {
         if (routeButton.isSelected){ // plot route
+            
             var selectedPubs: [(String, Double, Double)] = []
             for annotation in mapView.annotations{
                 if mapView.view(for: annotation)!.isHighlighted{
@@ -40,12 +41,40 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 plotRoute(selectedPubs)
             }
         } else { // Clear map of any selections/routes
+            for annotation in mapView.annotations{
+                mapView.view(for: annotation)!.isHighlighted = false
+                mapView.view(for: annotation)!.layer.opacity = 1.0
+            }
+            mapView.removeOverlays(mapView.overlays)
             
+            // create the actual alert controller view that will be the pop-up
+            let alertController = UIAlertController(title: "Plan a pub crawl", message: "Plan your own crawl or tell us how many pubs you wnat to visit and let us plan it for you.", preferredStyle: .alert)
+
+            alertController.addTextField { (textField) in
+                // configure the properties of the text field
+                textField.placeholder = "Number of pubs"
+                textField.keyboardType = .numberPad // Set keyboard type to number pad
+            }
+
+            // add the buttons/actions to the view controller
+            let cancelAction = UIAlertAction(title: "Select my own pubs", style: .destructive) { _ in
+                return
+            }
+            let saveAction = UIAlertAction(title: "Plan for me", style: .default) { _ in
+                // poll server for route and plotRoute
+                self.routeButton.isSelected = false
+                self.routeButton.layer.opacity = 1.0
+            }
+
+            alertController.addAction(cancelAction)
+            alertController.addAction(saveAction)
+
+            present(alertController, animated: true, completion: nil)
         }
         
         routeButton.isSelected = !routeButton.isSelected
         if routeButton.isSelected{
-            routeButton.layer.opacity = 0.7
+            routeButton.layer.opacity = 0.6
         } else {
             routeButton.layer.opacity = 1.0
         }
@@ -86,7 +115,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
                                                                
-   func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
        if overlay is MKPolyline {
            let renderer = MKPolylineRenderer(overlay: overlay)
            renderer.strokeColor = UIColor(red: 60.0/255.0, green: 133.0/255.0, blue: 168.0/255.0, alpha: 1.0)
@@ -95,7 +124,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
        }
        return MKOverlayRenderer(overlay: overlay)
    }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locationOfUser = locations[0] //this method returns an array of locations
