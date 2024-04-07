@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     let pubs = [
         ("The Sphinx", 53.40501748448972, -2.966496069757191),
         ("The Augustus John", 53.405754859909464, -2.964630449373654),
@@ -20,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     ]
     
     @IBOutlet weak var routeButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
     
     var locationManager = CLLocationManager()
@@ -27,13 +28,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var firstRun = true
     var startTrackingTheUser = false // If map should center on user (for navigation)
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchMapFor(searchText)
+    }
+    
     @IBAction func planRoute(_ sender: Any) {
         if (routeButton.isSelected){ // plot route
             
             var selectedPubs: [(String, Double, Double)] = []
             for annotation in mapView.annotations{
-                if mapView.view(for: annotation)!.isHighlighted{
-                    selectedPubs.append((annotation.title!!, annotation.coordinate.latitude, annotation.coordinate.longitude))
+                if let annotationView = mapView.view(for: annotation) {
+                    if annotationView.isHighlighted{
+                        selectedPubs.append((annotation.title!!, annotation.coordinate.latitude, annotation.coordinate.longitude))
+                    }
                 }
             }
             
@@ -42,19 +49,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
         } else { // Clear map of any selections/routes
             for annotation in mapView.annotations{
-                mapView.view(for: annotation)!.isHighlighted = false
-                mapView.view(for: annotation)!.layer.opacity = 1.0
+                if let annotationView = mapView.view(for: annotation) {
+                    annotationView.isHighlighted = false
+                    annotationView.layer.opacity = 1.0
+                }
             }
+            
             mapView.removeOverlays(mapView.overlays)
             
             // create the actual alert controller view that will be the pop-up
-            let alertController = UIAlertController(title: "Plan a pub crawl", message: "Plan your own crawl or tell us how many pubs you wnat to visit and let us plan it for you.", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Plan a pub crawl", message: "Plan your own crawl or tell us how many pubs you want to visit and let us plan it for you.", preferredStyle: .alert)
 
             alertController.addTextField { (textField) in
                 // configure the properties of the text field
                 textField.placeholder = "Number of pubs"
                 textField.keyboardType = .numberPad // Set keyboard type to number pad
             }
+            
 
             // add the buttons/actions to the view controller
             let cancelAction = UIAlertAction(title: "Select my own pubs", style: .destructive) { _ in
@@ -82,6 +93,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     @IBAction func keyboardDismiss(_ sender: Any) {
         view.endEditing(true)
+    }
+    
+    func searchMapFor(_ query: String) {
+        let allAnnotations = mapView.annotations
+
+        // Filter annotations based on the title matching the search query
+        let filteredAnnotations = allAnnotations.filter { annotation in
+            return annotation.title??.lowercased().contains(query.lowercased()) ?? false
+        }
+        
+        if !filteredAnnotations.isEmpty {
+            let center = filteredAnnotations[0].coordinate
+
+            mapView.setCenter(center, animated: true)
+        }
     }
     
     func plotRoute(_ pubs: [(String, Double, Double)]){
@@ -172,7 +198,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 view.layer.opacity = 1
             }
         } else {  // View details
-            performSegue(withIdentifier: "loactionDetailSegue", sender: self)
+            performSegue(withIdentifier: "pubDetailSegue", sender: self)
         }
     }
     

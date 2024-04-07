@@ -148,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuK-o3-Hs1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745.80152671755718" y="719.71830985915494"/>
+            <point key="canvasLocation" x="-158" y="744"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Vbf-sV-s8I">
@@ -195,7 +195,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCs-Hi-b5r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="kTv-Kt-kHy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1564.1221374045801" y="730.98591549295782"/>
+            <point key="canvasLocation" x="660" y="756"/>
         </scene>
         <!--Map-->
         <scene sceneID="E1B-yy-9mu">
@@ -234,7 +234,7 @@
                                 <rect key="frame" x="16" y="96" width="292" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="dWn-dA-5z9" id="UnK-hI-wNb"/>
+                                    <outlet property="delegate" destination="dWn-dA-5z9" id="fEe-Yu-0xH"/>
                                 </connections>
                             </searchBar>
                         </subviews>
@@ -260,7 +260,8 @@
                     <connections>
                         <outlet property="mapView" destination="97G-2p-jY9" id="U27-Jb-C9Q"/>
                         <outlet property="routeButton" destination="VMe-c5-OE8" id="ZKg-ih-ieB"/>
-                        <segue destination="gub-c9-P1u" kind="show" identifier="loactionDetailSegue" id="rLK-xF-CzE"/>
+                        <outlet property="searchBar" destination="JYZ-yi-GGL" id="OWA-TC-j1h"/>
+                        <segue destination="BJu-2J-gfw" kind="show" identifier="pubDetailSegue" id="qk8-zh-yQk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYq-he-MxF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -270,32 +271,45 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="747.32824427480909" y="-82.394366197183103"/>
+            <point key="canvasLocation" x="726" y="-78"/>
         </scene>
-        <!--Loacation View Controller-->
-        <scene sceneID="98t-sW-BEA">
+        <!--View Controller-->
+        <scene sceneID="Cfh-4Y-uv1">
             <objects>
-                <viewController id="gub-c9-P1u" customClass="LoacationViewController" customModule="FindMyPint" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lPN-uD-lyc">
+                <viewController id="BJu-2J-gfw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jS2-aK-y9K">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pub info ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpg-d9-jSf">
-                                <rect key="frame" x="175" y="311" width="76" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pub name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Pg-be-iex">
+                                <rect key="frame" x="158" y="122" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NW-oC-cmS">
+                                <rect key="frame" x="131" y="685" width="131" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Get directions"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pub reviews..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WD-bb-wS3">
+                                <rect key="frame" x="143" y="304" width="106" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="KdY-vF-3G4"/>
+                        <viewLayoutGuide key="safeArea" id="RZw-KR-xiJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ZxF-Ys-6xE"/>
+                    <navigationItem key="navigationItem" id="eh8-xO-n1a"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EuU-hb-uQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ii6-lB-Gy8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1527" y="-82"/>
+            <point key="canvasLocation" x="1535.1145038167938" y="-78.16901408450704"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="waH-Wd-Gpv">
