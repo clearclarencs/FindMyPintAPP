@@ -10,6 +10,8 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDataSource {
     
     let icons = ["Corona", "Amstel", "Budweiser", "Stella"]
+    var username = ""
+    var editable = true
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var firstPintButton: UIButton!
@@ -18,6 +20,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var firstPubButton: UIButton!
     @IBOutlet weak var secondPubButton: UIButton!
     @IBOutlet weak var thirdPubButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var reviewTable: UITableView!
     
     @IBAction func firstPubClicked(_ sender: Any) {
@@ -143,14 +146,27 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
-        // Do any additional setup after loading the view.
+        refreshPage()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        usernameLabel.text = UserDefaults.standard.string(forKey: "username") ?? "Unknown"
+        refreshPage()
+    }
+    
+    func refreshPage(){
+        if username.isEmpty{
+            usernameLabel.text = UserDefaults.standard.string(forKey: "username") ?? "Unknown"
+        } else {
+            usernameLabel.text = username
+        }
+        
+        firstPubButton.isUserInteractionEnabled = editable
+        secondPubButton.isUserInteractionEnabled = editable
+        thirdPubButton.isUserInteractionEnabled = editable
+        firstPintButton.isUserInteractionEnabled = editable
+        secondPintButton.isUserInteractionEnabled = editable
+        thirdPintButton.isUserInteractionEnabled = editable
+        settingsButton.isHidden = !editable
     }
     
 
