@@ -110,7 +110,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let sourceViewController = segue.source as? PostViewController {
             if sourceViewController.createPost{
                 friendsPosts.insert((UserDefaults.standard.string(forKey: "username")!, sourceViewController.postTextView.text), at: 0)
-                friendsPosts.insert((UserDefaults.standard.string(forKey: "username")!, sourceViewController.postTextView.text), at: 0)
                 tableView.reloadData()
             }
         }

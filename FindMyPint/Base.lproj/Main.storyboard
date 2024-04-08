@@ -35,17 +35,6 @@
                                     <segue destination="iKS-1U-cPF" kind="show" identifier="settingsSegue" id="KWM-7z-GLY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQX-kh-mOL">
-                                <rect key="frame" x="327" y="54" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="hand.wave" catalog="system" title="">
-                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="addFriend:" destination="WT7-5s-Egz" eventType="touchUpInside" id="4SB-hn-xrm"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-fx-2Yj">
                                 <rect key="frame" x="16" y="225" width="113" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -145,6 +134,17 @@
                                 <color key="textColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQX-kh-mOL">
+                                <rect key="frame" x="327" y="56" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="hand.wave" catalog="system" title="">
+                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="addFriend:" destination="WT7-5s-Egz" eventType="touchUpInside" id="4SB-hn-xrm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a5j-Ox-RHU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -235,7 +235,7 @@
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMe-c5-OE8">
-                                <rect key="frame" x="327" y="96" width="50" height="50"/>
+                                <rect key="frame" x="321" y="102" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
@@ -259,6 +259,16 @@
                                     <outlet property="delegate" destination="dWn-dA-5z9" id="fEe-Yu-0xH"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bo1-x4-9rX">
+                                <rect key="frame" x="321" y="713" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up" catalog="system" buttonSize="mini"/>
+                                <connections>
+                                    <action selector="shareRoute:" destination="dWn-dA-5z9" eventType="touchUpInside" id="4QC-tS-2zK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EzE-8C-XBM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -283,6 +293,7 @@
                         <outlet property="mapView" destination="97G-2p-jY9" id="U27-Jb-C9Q"/>
                         <outlet property="routeButton" destination="VMe-c5-OE8" id="ZKg-ih-ieB"/>
                         <outlet property="searchBar" destination="JYZ-yi-GGL" id="OWA-TC-j1h"/>
+                        <outlet property="shareButton" destination="Bo1-x4-9rX" id="ppf-Ak-f9D"/>
                         <segue destination="BJu-2J-gfw" kind="show" identifier="pubDetailSegue" id="qk8-zh-yQk"/>
                     </connections>
                 </viewController>
@@ -634,6 +645,7 @@
         <image name="mug.fill" catalog="system" width="128" height="125"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

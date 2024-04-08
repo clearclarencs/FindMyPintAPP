@@ -22,31 +22,45 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var routeButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var shareButton: UIButton!
     
     var locationManager = CLLocationManager()
     
     var firstRun = true
     var startTrackingTheUser = false // If map should center on user (for navigation)
+    var routePubs: [(String, Double, Double)] = []
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchMapFor(searchText)
     }
     
+    @IBAction func shareRoute(_ sender: Any) {
+        var routeMessage = "Just planned the following pub crawl:"
+        for (i, pub) in routePubs.enumerated(){
+            routeMessage += "\n\(i+1)) \(pub.0)"
+        }
+        routeMessage += "\nCome join me!"
+        
+        if let tabBarController = self.tabBarController, let feedVC = tabBarController.viewControllers?[0] as? FeedViewController {
+            feedVC.friendsPosts.insert((UserDefaults.standard.string(forKey: "username") ?? "Unknown", routeMessage), at:0)
+        }
+
+
+        shareButton.layer.opacity = 0.6
+        shareButton.isUserInteractionEnabled = false
+    }
+    
     @IBAction func planRoute(_ sender: Any) {
+        shareButton.isEnabled = false
         if (routeButton.isSelected){ // plot route
             
-            var selectedPubs: [(String, Double, Double)] = []
-            for annotation in mapView.annotations{
-                if let annotationView = mapView.view(for: annotation) {
-                    if annotationView.isHighlighted{
-                        selectedPubs.append((annotation.title!!, annotation.coordinate.latitude, annotation.coordinate.longitude))
-                    }
-                }
+            if routePubs.count > 1{  // Plot route
+                plotRoute(routePubs)
+                shareButton.isEnabled = true
+                shareButton.layer.opacity = 1
+                shareButton.isUserInteractionEnabled = true
             }
             
-            if !selectedPubs.isEmpty{  // Plot route
-                plotRoute(selectedPubs)
-            }
         } else { // Clear map of any selections/routes
             for annotation in mapView.annotations{
                 if let annotationView = mapView.view(for: annotation) {
@@ -54,6 +68,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     annotationView.layer.opacity = 1.0
                 }
             }
+            
+            routePubs = []
             
             mapView.removeOverlays(mapView.overlays)
             
@@ -194,6 +210,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             view.isHighlighted = !view.isHighlighted
             if view.isHighlighted{  // select pub
                 view.layer.opacity = 0.6
+                if let annotation = view.annotation {
+                    if let title = annotation.title{
+                        routePubs.append((title ?? "Unknown", annotation.coordinate.latitude, annotation.coordinate.longitude))
+                    }
+                }
             } else {  // deselect pub
                 view.layer.opacity = 1
             }
