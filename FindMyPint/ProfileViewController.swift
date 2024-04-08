@@ -21,7 +21,18 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var secondPubButton: UIButton!
     @IBOutlet weak var thirdPubButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var addFriendButton: UIButton!
     @IBOutlet weak var reviewTable: UITableView!
+    
+    
+    @IBAction func addFriend(_ sender: Any) {
+        addFriendButton.isSelected = !addFriendButton.isSelected
+        if addFriendButton.isSelected{
+            addFriendButton.setImage(UIImage(systemName: "hand.wave.fill"), for: .normal)
+        } else {
+            addFriendButton.setImage(UIImage(systemName: "hand.wave"), for: .normal)
+        }
+    }
     
     @IBAction func firstPubClicked(_ sender: Any) {
         // create the actual alert controller view that will be the pop-up
@@ -155,11 +166,12 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
     
     func refreshPage(){
         if username.isEmpty{
-            usernameLabel.text = UserDefaults.standard.string(forKey: "username") ?? "Unknown"
+            usernameLabel.text = (UserDefaults.standard.string(forKey: "username") ?? "Unknown")
         } else {
-            usernameLabel.text = username
+            usernameLabel.text = "@" + username
         }
         
+        // View own profile vs view other profile
         firstPubButton.isUserInteractionEnabled = editable
         secondPubButton.isUserInteractionEnabled = editable
         thirdPubButton.isUserInteractionEnabled = editable
@@ -167,6 +179,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource {
         secondPintButton.isUserInteractionEnabled = editable
         thirdPintButton.isUserInteractionEnabled = editable
         settingsButton.isHidden = !editable
+        addFriendButton.isHidden = editable
     }
     
 

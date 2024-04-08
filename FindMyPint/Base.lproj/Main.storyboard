@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,19 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FindMyPint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBd-Di-LbB">
-                                <rect key="frame" x="16" y="0.0" width="151" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FindMyPint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBd-Di-LbB">
+                                <rect key="frame" x="16" y="56" width="151" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yS-OE-sG6">
-                                <rect key="frame" x="331" y="62" width="35" height="34"/>
+                                <rect key="frame" x="327" y="56" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="gear" catalog="system" title=""/>
+                                <buttonConfiguration key="configuration" style="filled" image="gear" catalog="system" title="">
+                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="iKS-1U-cPF" kind="show" identifier="settingsSegue" id="KWM-7z-GLY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQX-kh-mOL">
+                                <rect key="frame" x="327" y="54" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="hand.wave" catalog="system" title="">
+                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="addFriend:" destination="WT7-5s-Egz" eventType="touchUpInside" id="4SB-hn-xrm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-fx-2Yj">
@@ -71,7 +84,9 @@
                                 <rect key="frame" x="16" y="407" width="117" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="🥇" subtitle="Hope and Anchor" titleAlignment="center"/>
+                                <buttonConfiguration key="configuration" style="plain" title="🥇" subtitle="Hope and Anchor" titleAlignment="center">
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="firstPubClicked:" destination="WT7-5s-Egz" eventType="touchUpInside" id="gb1-B0-lMD"/>
                                 </connections>
@@ -87,7 +102,9 @@
                                 <rect key="frame" x="268" y="407" width="98" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="🥉" subtitle="Sphinx" titleAlignment="center"/>
+                                <buttonConfiguration key="configuration" style="plain" title="🥉" subtitle="Sphinx" titleAlignment="center">
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="thirdPubClicked:" destination="WT7-5s-Egz" eventType="touchUpInside" id="ckQ-wE-QhK"/>
                                 </connections>
@@ -96,7 +113,9 @@
                                 <rect key="frame" x="137" y="407" width="119" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="🥈" subtitle="Brookhouse" titleAlignment="center"/>
+                                <buttonConfiguration key="configuration" style="plain" title="🥈" subtitle="Brookhouse" titleAlignment="center">
+                                    <color key="baseForegroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="secondPubClicked:" destination="WT7-5s-Egz" eventType="touchUpInside" id="cLw-HX-1mz"/>
                                 </connections>
@@ -120,23 +139,20 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXS-qc-YiX">
-                                <rect key="frame" x="16" y="130" width="361" height="55"/>
+                                <rect key="frame" x="16" y="114" width="361" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" name="AccentColor"/>
+                                <color key="textColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a5j-Ox-RHU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="oBd-Di-LbB" firstAttribute="leading" secondItem="a5j-Ox-RHU" secondAttribute="leading" constant="16" id="fDs-WY-ahc"/>
-                            <constraint firstItem="oBd-Di-LbB" firstAttribute="top" secondItem="a5j-Ox-RHU" secondAttribute="top" id="l0x-OI-VgI"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person.crop.circle" catalog="system" selectedImage="person.crop.circle.fill" id="iif-eC-UEO"/>
                     <navigationItem key="navigationItem" id="woq-G5-S4E"/>
                     <connections>
+                        <outlet property="addFriendButton" destination="YQX-kh-mOL" id="a0d-GY-n3b"/>
                         <outlet property="firstPintButton" destination="MoS-fx-2Yj" id="fth-W8-We0"/>
                         <outlet property="firstPubButton" destination="Gpn-27-hN8" id="uJQ-f1-goB"/>
                         <outlet property="reviewTable" destination="w4j-UK-t7J" id="aLV-yE-4ty"/>
@@ -164,7 +180,9 @@
                                 <rect key="frame" x="127" y="693" width="139" height="34.333333333333371"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Logout">
+                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="logOut:" destination="iKS-1U-cPF" eventType="touchUpInside" id="VSz-Nc-1oi"/>
                                     <segue destination="kTv-Kt-kHy" kind="unwind" unwindAction="unwindFromPostSegueWithSegue:" id="4kP-FK-Xml"/>
@@ -180,7 +198,9 @@
                                 <rect key="frame" x="116" y="481" width="161" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Change password"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Change password">
+                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="changePassword:" destination="iKS-1U-cPF" eventType="touchUpInside" id="TvS-re-zuX"/>
                                 </connections>
@@ -294,7 +314,9 @@
                                 <rect key="frame" x="131" y="685" width="131" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Get directions"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Get directions">
+                                    <color key="baseBackgroundColor" red="0.23529411759999999" green="0.52156862749999999" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pub reviews..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WD-bb-wS3">
                                 <rect key="frame" x="143" y="304" width="106" height="21"/>
@@ -605,15 +627,13 @@
         <image name="Budweiser" width="100" height="100"/>
         <image name="Corona" width="100" height="100"/>
         <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="hand.wave" catalog="system" width="128" height="128"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <image name="map.fill" catalog="system" width="128" height="110"/>
         <image name="mug" catalog="system" width="128" height="125"/>
         <image name="mug.fill" catalog="system" width="128" height="125"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
